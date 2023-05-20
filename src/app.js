@@ -1,7 +1,8 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import List from "./components/list";
 import Controls from "./components/controls";
 import Head from "./components/head";
+import Cart from "./components/cart";
 import PageLayout from "./components/page-layout";
 
 /**
@@ -11,35 +12,39 @@ import PageLayout from "./components/page-layout";
  */
 function App({ store }) {
   const list = store.getState().list;
+  const productsInCart = store.getState().productsInCart;
+
+  const isCartShown = store.getState().isCartShown;
 
   const callbacks = {
-    onDeleteItem: useCallback(
+    onBuyItem: useCallback(
       (code) => {
-        store.deleteItem(code);
+        store.buyItem(code);
       },
       [store]
     ),
 
-    onSelectItem: useCallback(
-      (code) => {
-        store.selectItem(code);
+    onSetCartVisibility: useCallback(
+      (visibility) => {
+        store.setCartVisibility(visibility);
       },
       [store]
     ),
-
-    onAddItem: useCallback(() => {
-      store.addItem();
-    }, [store]),
   };
 
   return (
     <PageLayout>
       <Head title="Магазин" />
-      <Controls onAdd={callbacks.onAddItem} />
-      <List
-        list={list}
-        onDeleteItem={callbacks.onDeleteItem}
-        onSelectItem={callbacks.onSelectItem}
+      <Controls
+        productsInCart={productsInCart}
+        showModal={callbacks.onSetCartVisibility}
+      />
+      <List list={list} onBuyItem={callbacks.onBuyItem} />
+
+      <Cart
+        isVisible={isCartShown}
+        productsInCart={productsInCart}
+        showModal={callbacks.onSetCartVisibility}
       />
     </PageLayout>
   );
