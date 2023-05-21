@@ -17,7 +17,9 @@ export function plural(value, variants = {}, locale = "ru-RU") {
 }
 
 /**
- 
+ * Разделение числа пробелами по 3 разряда
+ * @param number {Number} Число, подлежащее преобразованию
+ * @returns {Number}
  */
 export function splitNumber(number) {
   return number.toLocaleString("ru-RU", {
