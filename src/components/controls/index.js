@@ -26,11 +26,19 @@ function Controls({ productsInCart, showModal }) {
 }
 
 Controls.propTypes = {
-  // onAdd: PropTypes.func //////////////////
+  productsInCart: PropTypes.arrayOf(
+    PropTypes.shape({
+      code: PropTypes.number,
+      title: PropTypes.string,
+      price: PropTypes.number,
+      countInCart: PropTypes.number,
+    })
+  ),
+  showModal: PropTypes.func,
 };
 
 Controls.defaultProps = {
-  onAdd: () => {},
+  showModal: () => {},
 };
 
 export default React.memo(Controls);
