@@ -4,23 +4,8 @@ import { splitNumber } from "../../utils";
 import "./style.css";
 
 function Item(props) {
-  // Счётчик выделений
-  // const [count, setCount] = useState(0);
-
   const callbacks = {
-    // onClick: () => {
-    //   props.onSelect(props.item.code);
-    //   if (!props.item.selected) {
-    //     setCount(count + 1);
-    //   }
-    // },
-    // onDelete: (e) => {
-    //   e.stopPropagation();
-    //   props.onDelete(props.item.code);
-    // }
-
     onBuy: () => {
-      // e.stopPropagation();
       props.onBuy(props.item.code);
     },
   };
@@ -46,13 +31,11 @@ Item.propTypes = {
     selected: PropTypes.bool,
     count: PropTypes.number,
   }).isRequired,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func,
+  onBuy: PropTypes.func,
 };
 
 Item.defaultProps = {
-  onDelete: () => {},
-  onSelect: () => {},
+  onBuy: () => {},
 };
 
 export default React.memo(Item);
