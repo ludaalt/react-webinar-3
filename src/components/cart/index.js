@@ -52,8 +52,24 @@ function Cart({ isVisible, showModal, productsInCart, onDeleteItem }) {
   );
 }
 
-// Cart.propTypes = {
-//   title: PropTypes.node,
-// };
+Cart.propTypes = {
+  isVisible: PropTypes.bool,
+  showModal: PropTypes.func,
+
+  productsInCart: PropTypes.arrayOf(
+    PropTypes.shape({
+      code: PropTypes.number,
+      title: PropTypes.string,
+      price: PropTypes.number,
+      countInCart: PropTypes.number,
+    })
+  ).isRequired,
+
+  onDeleteItem: PropTypes.func,
+};
+
+Cart.defaultProps = {
+  onDeleteItem: () => {},
+};
 
 export default React.memo(Cart);
