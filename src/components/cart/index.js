@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 import Head from "../head";
 import "./style.css";
 
-function Cart({ isVisible, showModal, productsInCart }) {
-  console.log(productsInCart);
+function Cart({ isVisible, showModal, productsInCart, onDeleteItem }) {
   return (
     isVisible && (
       <div className="Cart-wrapper" onClick={() => showModal(false)}>
@@ -28,7 +27,9 @@ function Cart({ isVisible, showModal, productsInCart }) {
                   <td>{`${item.price} \u20bd`}</td>
                   <td>{`${item.countInCart} шт`}</td>
                   <td>
-                    <button>Удалить</button>
+                    <button onClick={() => onDeleteItem(item.code)}>
+                      Удалить
+                    </button>
                   </td>
                 </tr>
               ))}

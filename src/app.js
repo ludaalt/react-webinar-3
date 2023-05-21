@@ -24,6 +24,13 @@ function App({ store }) {
       [store]
     ),
 
+    onDeleteItem: useCallback(
+      (code) => {
+        store.deteleItemFromCart(code);
+      },
+      [store]
+    ),
+
     onSetCartVisibility: useCallback(
       (visibility) => {
         store.setCartVisibility(visibility);
@@ -45,6 +52,7 @@ function App({ store }) {
         isVisible={isCartShown}
         productsInCart={productsInCart}
         showModal={callbacks.onSetCartVisibility}
+        onDeleteItem={callbacks.onDeleteItem}
       />
     </PageLayout>
   );

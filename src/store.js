@@ -97,6 +97,19 @@ class Store {
   }
 
   /**
+   * Удаление товара из корзины по коду
+   * @param code
+   */
+  deteleItemFromCart(code) {
+    this.setState({
+      ...this.state,
+      productsInCart: this.state.productsInCart.filter(
+        (item) => item.code !== code
+      ),
+    });
+  }
+
+  /**
    * Выделение записи по коду
    * @param code
    */
